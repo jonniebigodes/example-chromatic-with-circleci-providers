@@ -15,9 +15,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  chromatic:
+  chromatic-deploy:
+    docker:
+      - image: circleci/node:12
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
       - run: yarn chromatic --project-token=84svyadsh4w
 
 workflows:
@@ -25,9 +33,7 @@ workflows:
   build-and-chromatic-deploy:
     jobs:
       - build
-      - chromatic:
-          requires:
-            - build
+      - chromatic-deploy
 #          filters:
 #            branches:
 #              only: main
