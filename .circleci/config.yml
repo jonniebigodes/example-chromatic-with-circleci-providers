@@ -33,7 +33,9 @@ workflows:
   build-and-chromatic-deploy:
     jobs:
       - build
-      - chromatic-deploy
+      - chromatic-deploy:
+          requires:
+            - build
 #          filters:
 #            branches:
 #              only: main
