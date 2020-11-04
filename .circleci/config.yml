@@ -1,3 +1,4 @@
+# initial setup
 version: 2
 jobs:
   build:
@@ -15,4 +16,13 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn chromatic --project-token=84svyadsh4w
+    #  - run: yarn chromatic --project-token=84svyadsh4w
+    # branching
+      - run: |
+          if [[ "${CIRCLE_BRANCH}" == renovate/* ]]; then
+            echo "Skipping Chromatic"
+          elif [ "${CIRCLE_BRANCH}" == "example" ]; then
+            echo "Skipping Chromatic"
+          else
+            yarn chromatic --project-token=84svyadsh4w
+          fi
