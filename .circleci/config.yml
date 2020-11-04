@@ -12,9 +12,9 @@ jobs:
             - v1-dependencies-
       - run: yarn install
       - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn build
       - run: yarn chromatic --project-token=84svyadsh4w
-
-
