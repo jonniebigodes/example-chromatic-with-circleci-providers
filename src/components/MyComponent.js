@@ -10,7 +10,7 @@ const MyComponent = ({ itemOne,itemTwo}) => {
       <h3>This is the value of propertyB</h3>
       { itemTwo }
       <div>
-        this is a example
+        this is a example for circle
       </div>
     </>
   );
