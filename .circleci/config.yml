@@ -26,7 +26,8 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: yarn install
-      - run: yarn chromatic --project-token=84svyadsh4w
+      #- run: yarn chromatic --project-token=84svyadsh4w
+      - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}
 
 workflows:
   version: 2
